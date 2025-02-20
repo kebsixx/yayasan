@@ -68,4 +68,10 @@ class ScheduleController extends Controller
         $schedule->delete();
         return redirect()->route('admin.schedules.index')->with('success', 'Schedule deleted successfully');
     }
+
+    public function home()
+    {
+        $schedules = Schedule::all()->groupBy('month');
+        return view('index', compact('schedules'));
+    }
 }

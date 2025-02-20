@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ScheduleController;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ScheduleController::class, 'home']);
 
 // Admin routes
 Route::get('/admin', [AdminController::class, 'loginForm'])->name('admin.login');

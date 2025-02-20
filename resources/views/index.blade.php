@@ -203,149 +203,41 @@
 
                         <nav>
                             <div class="nav nav-tabs align-items-baseline" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-DayOne-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-DayOne" type="button" role="tab"
-                                    aria-controls="nav-DayOne" aria-selected="true">
-                                    <h3>
-                                        <span>Activity</span>
-                                        <small>Januari 2024</small>
-                                    </h3>
-                                </button>
-
-                                <button class="nav-link" id="nav-DayTwo-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-DayTwo" type="button" role="tab"
-                                    aria-controls="nav-DayTwo" aria-selected="false">
-                                    <h3>
-                                        <span>Activity</span>
-                                        <small>Februari 2025</small>
-                                    </h3>
-                                </button>
-
-                                <button class="nav-link" id="nav-DayThree-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-DayThree" type="button" role="tab"
-                                    aria-controls="nav-DayThree" aria-selected="false">
-                                    <h3>
-                                        <span>Activity</span>
-                                        <small>Maret 2025</small>
-                                    </h3>
-                                </button>
+                                @foreach ($schedules as $month => $monthSchedules)
+                                    <button class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                        id="nav-{{ $month }}-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-{{ $month }}" type="button" role="tab"
+                                        aria-controls="nav-{{ $month }}"
+                                        aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                                        <h3>
+                                            <span>Activity</span>
+                                            <small>{{ $month }}</small>
+                                        </h3>
+                                    </button>
+                                @endforeach
                             </div>
                         </nav>
 
                         <div class="tab-content mt-5" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-DayOne" role="tabpanel"
-                                aria-labelledby="nav-DayOne-tab">
-                                <div class="row border-bottom pb-5 mb-5">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
+                            @foreach ($schedules as $month => $monthSchedules)
+                                <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                                    id="nav-{{ $month }}" role="tabpanel"
+                                    aria-labelledby="nav-{{ $month }}-tab">
+                                    @foreach ($monthSchedules as $schedule)
+                                        <div class="row {{ !$loop->last ? 'border-bottom pb-5 mb-5' : '' }}">
+                                            <div class="col-lg-4 col-12">
+                                                <img src="{{ asset($schedule->image) }}"
+                                                    class="schedule-image img-fluid" alt="{{ $schedule->title }}" />
+                                            </div>
 
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
+                                            <div class="col-lg-8 col-12 mt-3 mt-lg-0">
+                                                <h4 class="mb-2">{{ $schedule->title }}</h4>
+                                                <p>{{ $schedule->description }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-
-                                <div class="row border-bottom pb-5 mb-5">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="nav-DayTwo" role="tabpanel"
-                                aria-labelledby="nav-DayTwo-tab">
-                                <div class="row border-bottom pb-5 mb-5">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="nav-DayThree" role="tabpanel"
-                                aria-labelledby="nav-DayThree-tab">
-                                <div class="row border-bottom pb-5 mb-5">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4 col-12">
-                                        <img src="/images/schedule/foto.jpg" class="schedule-image img-fluid"
-                                            alt="" />
-                                    </div>
-
-                                    <div class="col-lg-8 col-12 mt-3 mt-lg-0">
-                                        <h4 class="mb-2">Acara</h4>
-
-                                        <p>
-                                            Acara santunan anak yatim piatu dan dhuafa
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
